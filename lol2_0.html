@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>LOL V2.0</title>
+		<script>
+			//页面加载完毕时触发
+			window.onload=function(){
+				var root= document.getElementById("top");
+				root.style.cssText="height:720px";
+			}
+
+			window.onscroll= function(){
+				var p= document.getElementById("top");
+				//alert(p);
+                //变量t是滚动条滚动时，距离顶部的距离
+                var t = document.documentElement.scrollTop||document.body.scrollTop;
+                var scrollup = document.getElementById('scrollup');
+                //当滚动到距离顶部200px时，返回顶部的锚点显示
+                if(t>=0){
+                    scrollup.style.display="block";
+					p.style.cssText="height:360px";
+					
+                }else{          //恢复正常
+                    scrollup.style.display="none";
+                }
+            }
+			// 子菜单显示
+			function display(){
+				var root=document.getElementById("head-nav-sub");
+				root.style.display="block";
+			}
+			// 子菜单隐藏
+			function display_none(){
+				var root=document.getElementById("head-nav-sub");
+				root.style.display="none";
+			}
+			// 掌盟app二维码
+			function display_app(){
+				var root=document.getElementsById("head-app-hover");
+				root.style.display="block";
+			}
+		</script>
+		<style>
+			html{color:#000;background:#FFF;} body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form, fieldset,input,textarea,p,blockquote,th,td { margin:0; padding:0; } table{ border-collapse:collapse; border-spacing:0; } fieldset,img { border:0; } address,caption,cite,code,dfn,em,strong,th,var { font-style:normal; font-weight:normal; } ol,ul { list-style:none; } caption,th { text-align:left; } h1,h2,h3,h4,h5,h6 { font-size:100%; font-weight:normal; } q:before,q:after { content:''; } abbr,acronym { border:0; } @charset "utf-8";*{	margin: 0px;	padding: 0px;	} a{	text-decoration: none;	color: #000000;	font-size:15px;	/*字体*/}li{	list-style: none;}input,img{	border: none;}
+
+			 /* 官网通用页头	 */
+			.top{
+				width: 100%;
+				min-width: 1230px;
+				height: 360px;
+				overflow: hidden;
+				position: relative;
+				background: center top no-repeat;
+				transition: height 0.6s,background, 0.6s;
+			}
+			
+			 /* 官网通用页头图片  */
+			#top_img{
+				position: absolute;
+				left: 50%;
+				top: 0;
+				width: 1920px;
+				height: 100%;
+				margin-left: -960px;
+			}
+			/* 头部阴影 */
+			.top .dark-mask{
+				width: 100%;
+				height: 131px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background: url(https://ossweb-img.qq.com/images/lol/v3/dark-jianbian-repeatx-0.png) repeat center top;
+				z-index: 1;
+			}
+
+			.head-normal{
+				border: 1px solid black;
+				width: 80%;
+				max-width: 1358px;
+				min-width: 1230px;
+				height: 78px;
+				margin: 0 auto;
+				position: relative;;
+				z-index: 10;
+			}
+			
+			.logo{
+				float: left;
+				width: 132px;
+				height: 49px;
+				margin-top: 14px;
+			}
+
+			.logo img{
+				background-repeat: no-repeat;
+				width: 132px;
+    			height: 49px;
+			}
+			
+			.head-nav{
+				float: left;
+				width: 55%;
+				height: 78px;
+				box-sizing: border-box;
+				margin-left: 30px;
+				padding-top: 16px;
+			}
+			
+			.head-nav li{
+				float: left;
+				list-style: none;
+				width: 20%;
+				height: 78px;
+				text-align: center;
+			}
+			
+			.head-nav>li>a {
+				display: block;
+				width: 100%;
+				height: 100%;
+				text-decoration:none;
+			}
+			
+			.head-nav-title{
+				display: block;
+				color: #fff;
+				font-size: 18px;
+				letter-spacing: 1px;
+			}
+			
+			.head-nav-subtitle{
+				display: block;
+				color: #aeaeae;
+				font-size: 11px;
+				margin-top: -1px;
+				letter-spacing: 1px;
+			}
+			 /* 玩家信息start */
+			.head-userinfo-normal{
+				float: right;
+				width: 244px;
+				height: 78px;
+				position: relative;
+				z-index: 3;
+			}
+			
+			.head-userinfo-avatar{
+				float: left;
+				width: 48px;
+				height: 48px;
+				position: relative;
+				margin-top: 14px;
+				line-height: 48px;
+				text-align: center;
+				font-size: 0;
+			}
+			
+			.head-userinfo-avatar img{
+				display: inline-block;
+				vertical-align: middle;
+				width: 36px;
+				height: auto;
+				border-radius: 50%;
+			}
+			
+			.head-userinfo-brief{
+				float: left;
+				margin-left: 10px;
+			}
+			
+			.unlogin{
+				color: #fefefe;
+				font-size: 16px;
+				line-height: 78px;
+			}
+			
+			.login-unbindarea{
+				color: #fefefe;
+				font-size: 16px;
+				line-height: 78px;
+				display:none;
+			}
+			
+			.logined{
+				color: #cdbe91;
+				line-height: 78px;
+				font-size: 0;
+				display:none;
+			}
+			
+			.login-name{
+				font-size: 16px;
+				width: auto;
+				height: 78px;
+				max-width: 135px;
+				overflow: hidden;
+			}
+			
+			.login-logout{
+				font-size: 14px;
+				color: #cdbe91;
+				margin-left: 10px;
+			}
+			 /* 掌盟图标start */
+			.head-app-normal{
+				float: right;
+				width: 40px;
+				height: 40px;
+				text-align: center;
+				line-height: 40px;
+				margin: 17px 31px 0 0;
+			}
+
+			.head-app-normal>a {
+				display: inline-block;
+				vertical-align: middle;
+			}
+
+			.comm-icon-phone {
+				background-position: -357px -84px;
+				width: 16px;
+				height: 24px;
+				background-image: url(https://ossweb-img.qq.com/images/lol/v3/topfoot-spr.png);
+				background-size: 405px 178px;
+				background-repeat: no-repeat;
+			}
+			 /* 掌盟图标end  */
+			
+			/* 搜索按钮 start  */
+			.head-search-btn{
+				float: right;
+				width: 40px;
+				height: 40px;
+				text-align: center;
+				line-height: 40px;
+				margin: 17px 12px 0 0;
+			}
+
+			.head-search-btn>i {
+				display: inline-block;
+				vertical-align: middle;
+			}
+
+			.comm-icon-search {
+				background-position: -381px -39px;
+				width: 23px;
+				height: 24px;
+				background-image: url(https://ossweb-img.qq.com/images/lol/v3/topfoot-spr.png);
+				background-size: 405px 178px;
+				background-repeat: no-repeat;
+			}
+			/* 搜索按钮 end */
+			
+			/* hover:掌盟二维码 */
+			.head-app-hover{
+				background-position: 0 0;
+				width: 211px;
+				height: 178px;
+				position: absolute;
+				top: 68px;
+				right: 190px;
+				display: none;
+			}
+			
+			.head-app-hover>.p1 {
+				color: #cdbe91;
+				font-size: 12px;
+				width: 100%;
+				margin-top: 10px;
+				text-align: center;
+			}
+			
+			.head-app-hover>.polo {
+				width: 50px;
+				height: 50px;
+				display: block;
+				position: absolute;
+				right: -8px;
+				bottom: -2px;
+			}
+			
+			.head-zm-qrcode{
+				display: block;
+				width: 120px;
+				height: 120px;
+				text-align: center;
+				line-height: 117px;
+				background-color: #fff;
+				margin: 22px auto 0 auto;
+				border-radius: 10px;
+			}
+			/* hover:掌盟二维码end */
+
+			/* 登陆hover */
+			.head-login-hover {
+				position: absolute;
+				display: none;
+				top: 0;
+				right: -38px;
+				width: 310px;
+				height: auto;
+				overflow: hidden;
+				background: url(https://ossweb-img.qq.com/images/lol/v3/dark70-bg-repeat.png) repeat;
+				padding-top: 78px;
+			}
+			
+			.head-login-hover .p1 {
+				margin-top: 30px;
+			}
+			
+			.head-login-hover .p2 {
+				margin-top: 14px;
+			}
+			
+			.logined-top {
+				width: 100%;
+				height: 24px;
+				line-height: 24px;
+				box-sizing: border-box;
+				padding: 0 12px;
+			}
+			
+			.logined-top .select-area {
+				float: left;
+				width: auto;
+				padding-left: 10px;
+				background-color: #2f2d2d;
+				color: #848383;
+				font-size: 12px;
+				text-align: left;
+				position: relative;
+			}
+			
+			.logined-top .user-name {
+				text-align: left;
+				float: right;
+				width: auto;
+				max-width: 154px;
+				height: 24px;
+				font-size: 16px;
+				color: #cdbe91;
+			}
+			
+			.logined-ul {
+				width: 100%;
+				height: auto;
+				overflow: hidden;
+				box-sizing: border-box;
+				padding-left: 10px;
+			}
+			
+			.logined-ul .user-rank {
+				float: left;
+				width: 88px;
+				height: 135px;
+				text-align: center;
+			}
+			
+			/* hover:官网导航子菜单 */
+			.head-nav-sub{
+				border: 1px solid red;
+				display: none;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 300px;
+				overflow: hidden;
+				background: url(https://ossweb-img.qq.com/images/lol/v3/dark60-bg-repeat.png) repeat;
+				padding: 88px 0 32px 0;
+				z-index: 9;
+			}
+
+			.head-nav-sub ul {
+				width: 55%;
+				overflow: hidden;
+				margin-left: 252px;
+				
+			}
+
+			.head-nav-sub ul>li {
+				list-style: none;
+				width: 17.5%;
+				float: left;
+				height: auto;
+				overflow: visible;
+			}
+
+			.head-nav-sub-a {
+				display: block;
+				width: 100%;
+				height: 29px;
+				overflow: hidden;
+				line-height: 29px;
+				color: #e1e1e1;
+				font-size: 14px;
+				text-align: center;
+			}
+
+			#scrollup{
+				background: #777;
+				color:#eee;
+				font-size: 40px;
+				text-align: center;
+				text-decoration: none;
+				bottom:65px;
+				right:20px;
+				overflow: hidden;
+				width:46px;
+				height:46px;
+				border:none;
+				opacity:.8;
+				
+			}
+			 /* 官网通用页头end  */
+			
+			/* 首页内容 */
+				/* part1 */
+				.g-zoombox{
+					width: 100%;
+					min-width: 1358px;
+					height: auto;
+					margin: 0 auto;
+					padding:0;
+				}
+				.g-index-wrap1{
+					width: 1358px;
+					height: auto;
+					margin: 0 auto;
+					padding: 40px 0 80px 0;
+				}
+				 /* 首页轮播图 */
+				.m-promo{
+					float: left;
+					width: 820px;
+					height: 380px;
+					overflow: hidden;
+					background-color: #e3e2e2;
+					position: relative;
+					margin: 0;
+					padding: 0;
+				}
+				.promo-img-list{
+					height:340px;
+					overflow:hidden;
+					position:relative;
+				}
+		</style>
+	</head>
+	<body>
+		<!-- 官网通用页头 -->
+		<div class="top" id="top">
+			<img id="top_img" width="100%" height="100%" src="https://img.crawler.qq.com/lolwebschool/0/JAutoCMS_LOLWeb_77c7d7b6c96f21827867c89ebd233ab4/0">
+			<div class="dark-mask"></div>
+			<div class="head-normal">
+				<a class="logo" target="_blank" href="https://lol.qq.com/" title="英雄联盟官网">
+					<img src="https://ossweb-img.qq.com/images/lol/v3/logo.png" alt="英雄联盟"></img>
+				</a>
+				<!-- 官网导航 -->
+				<ul class="head-nav" onmouseover="display()">
+					<li>
+						<a href="https://lol.qq.com/data/info-heros.shtml" target="_blank">
+							<span class="head-nav-title">游戏资料</span>
+							<span class="head-nav-subtitle">GAME INFO</span>
+						</a>
+					</li>
+					<li>
+						<a>
+							<span class="head-nav-title">商城/合作</span>
+							<span class="head-nav-subtitle">STORE</span>
+						</a>
+					</li>
+					<li>
+						<span class="head-nav-title">社区互动</span>
+						<span class="head-nav-subtitle">COMMUNITY</span>
+					</li>
+					<li>
+						<a href="https://lpl.qq.com/" target="_blank">
+							<span class="head-nav-title">赛事官网</span>
+							<span class="head-nav-subtitle">ESPORTS</span>
+						</a>
+					</li>
+					<li>
+						<span class="head-nav-title">自助系统</span>
+						<span class="head-nav-subtitle">SYSTEM</span>
+					</li>
+				</ul>
+				<!-- 玩家信息 -->
+				<div class="head-userinfo-normal">
+					<div class="head-userinfo-avatar">
+						<img src="https://ossweb-img.qq.com/images/lol/v2/personal/avatar/default.png" alt="玩家头像"></img>
+						<span></span>
+						<a href="https://lol.qq.com/space/index.shtml" target="_blank" class="herf-mask" title="个人中心"></a>
+					</div>
+					<div class="head-userinfo-brief">
+						<p class="unlogin">
+							亲爱的召唤师，欢迎
+							<a href="javascript:T_Login.login()">登陆</a>
+						</p>
+						<p class="login-unbindarea">
+							请
+							<a href="javascript:T_Login.changeArea()">绑定大区</a>
+							或
+							<a href="javascript:T_Login.logout()">注销</a>
+						</p>
+						<p class="logined">
+							<a class="logined-name"></a>
+							<a class="logined-logout" href="javascript:T_Login.logout()">[注销]</a>
+						</p>
+					</div>
+				</div>
+				<!-- 掌盟图标 -->
+				<span class="head-app-normal" onmouseover="display_app()">
+					<a href="https://lol.qq.com/app/index.html" target="_blank" class="comm-icon-phone"></a>
+				</span>
+				<!-- 搜索按钮 -->
+				<a class="head-search-btn" id="J_headSearchBtn" href="javascript:" title="搜索">
+					<i class="comm-icon-search"></i>
+				</a>
+				<!--hover:掌盟二维码-->
+				<div class="head-app-hover" id="head-app-hover">
+					<i class="head-zm-qrcode">
+						<img src="https://ossweb-img.qq.com/images/lol/v3/zm-qrcode.jpg" width="119" height="119" alt="掌盟App二维码"></img>
+					</i>
+					<p class="p1">扫码下载掌上英雄联盟</p>
+					<img class="polo" src="https://ossweb-img.qq.com/images/lol/v3/polo.gif" width="50" height="50" alt="魄罗">
+				</div>
+				<!--登录hover-->
+				<div class="head-login-hover">
+					<div class="unlogin">
+						<p class="p1">
+							登录并且绑定大区后才可以查看您的具体信息哦<br>
+							(包括战绩、资产、声望）
+						</p>
+						<p class="p2">
+							官网个人信息显示略有延迟，请以游戏数据为准
+						</p>
+					</div>
+					<div class="logined" style="display: none;">
+						<div class="logined-top">
+							<a class="select-area" href="javascript:T_Login.changeArea()"></a>
+							<a class="user-name"></a>
+						</div>
+						<ul class="logined-ul">
+							<li class="user-rank">
+								<div class="img-wrap">
+									<img src="https://ossweb-img.qq.com/images/lol/space/rank/2019pre/default.png" alt="段位" id="commHeadTierImg">
+								</div>
+								<a class="a1" id="commHeadTier">暂无段位</a>
+								<br>
+								<a class="a2" id="commHeadQueue"></a>
+							</li>
+							<li class="user-datalist">
+								<a class="a1" id="commHeadWinRate">--</a>
+								<br>
+								<a class="a2">胜率</a>
+							</li>
+							<li class="user-datalist">
+								<a class="a1" id="commHeadMatchCount">--</a>
+								<br>
+								<a class="a2">总场次</a>
+							</li>
+							<li class="user-datalist">
+								<a class="a1" id="commHeadJingCui">--</a>
+								<br>
+								<a class="a2">蓝色精粹</a>
+							</li>
+							<li class="user-datalist">
+								<a class="a1" id="commHeadDianQuan">--</a>
+								<br>
+								<a class="a2">点券</a>
+							</li>
+						</ul>
+						<p class="p2">
+							官网个人信息显示略有延迟，请以游戏数据为准
+						</p>
+					</div>
+					<a href="https://lol.qq.com/space/index.shtml" class="href-gouserhome">进入个人中心
+						<i class="more-arrow"><i>
+					</a>
+				</div>
+			</div>
+			<!--hover:官网导航子菜单-->
+			<div class="head-nav-sub" id="head-nav-sub" onmouseout="display_none()">
+				<div class="head-nav-sub-inner">
+					<ul onmouseover="display()">
+						<li>
+							<a class="head-nav-sub-a" href="https://lol.qq.com/data/newbie-what.shtml" target="_blank">新手指引</a>
+							<a class="head-nav-sub-a" href="https://lol.qq.com/data/info-heros.shtml" target="_blank">
+								<i class="icon-hot"></i>
+								资料库
+							</a>
+							<a class="head-nav-sub-a" href="https://lol.qq.com/guide/" target="_blank">
+								攻略中心
+							</a>
+							<a class="head-nav-sub-a" href="https://lol.qq.com/nexus/pc/" target="_blank">
+								<i class="icon-new"></i>
+								开发者基地
+							</a>
+							<a class="head-nav-sub-a" href="https://lol.qq.com/act/a20171205hextech/" target="_blank">
+								海克斯战利品库
+							</a>
+							<a class="head-nav-sub-a" href="https://lol.qq.com/act/a20180615armmaster/index.htm" target="_blank">
+								<i class="icon-new"></i>
+								武器大师竞技场
+							</a>
+							<a class="head-nav-sub-a" href="https://lol.qq.com//yz.lol.qq.com/" target="_blank">
+								宇宙官网
+							</a>
+						</li>
+						<li>
+							<a class="head-nav-sub-a" href="https://lol.qq.com/comm-htdocs/pay/new_index.htm?t=lol" target="_blank">
+								<i class="spublicspr ico-h"></i>
+								点券充值
+							</a>
+							<a class="head-nav-sub-a" href="https://daoju.qq.com/lol/" target="_blank">
+								道具城
+							</a>
+							<a class="head-nav-sub-a" href="https://lolriotmall.qq.com/index.html?ADTAG=lol.rk.gw.top&adunionsid=gwtop" target="_blank">
+								<i class="spublicspr ico-h"></i>
+								周边商城
+							</a>
+							<a class="head-nav-sub-a" href="https://lol.qq.com/mvm/?ADTAG=lol.rk.gw.top" target="_blank">
+								LOL桌游
+							</a>
+							<a class="head-nav-sub-a" href="https://lpl.qq.com/es/act/a20170731cmb/" target="_blank">
+								LOL信用卡
+							</a>
+							<a class="head-nav-sub-a" href="https://cafe.qq.com/" target="_blank">
+								网吧特权
+							</a>
+							<a class="head-nav-sub-a" href="https:/act/a20181124novel/?ADTAG=innercop.lol.web.top" target="_blank">
+								<i class="icon-new"></i>
+								电竞小说
+							</a>
+						</li>
+						<li>
+							<a class="head-nav-sub-a" href="https://lol.qq.com/act/a20180904community/page1.html" target="_blank">
+								官方社区
+							</a>
+							<a class="head-nav-sub-a" href="https:lol.qq.com/v/v2/index.shtml" target="_blank">
+								视频中心
+							</a>
+							<a class="head-nav-sub-a" href="http://bbs.lol.qq.com/forum.php" target="_blank">
+								官方论坛
+							</a>
+							<a class="head-nav-sub-a" href="https:lol.qq.com/act/a20160425wxlol/" target="_blank">
+								官方微信
+							</a>
+							<a class="head-nav-sub-a" href="https://weibo.com/lol" target="_blank">
+								官方微博
+							</a>
+							<a class="head-nav-sub-a" href="https://tr.lol.qq.com/" target="_blank">
+								<i class="icon-new"></i>
+								玩家创作馆
+							</a>
+							<a class="head-nav-sub-a" href="https://kol.qq.com/" target="_blank">
+								<i class="icon-new"></i>
+								作者入驻计划
+							</a>
+							<a class="head-nav-sub-a" href="https:lol.qq.com/act/a20180418yxny/" target="_blank">
+								<i class="icon-new"></i>
+								玩家服务
+							</a>
+						</li>
+						<li>
+							<a class="head-nav-sub-a" href="https://lpl.qq.com/es/lpl/2019/?ADTAG=innercop.lol.web.top" target="_blank">
+								<i class="icon-new"></i>
+								LPL职业联赛
+							</a>
+							<a class="head-nav-sub-a" href="https://lpl.qq.com/es/ldl/2018/?ADTAG=innercop.lol.web.top" target="_blank">
+								LDL发展联赛
+							</a>
+							<a class="head-nav-sub-a" href="https://lpl.qq.com/es/msi/2018/?ADTAG=innercop.lol.web.top" target="_blank">
+								季中冠军赛
+							</a>
+							<a class="head-nav-sub-a" href="https://lpl.qq.com/es/rr/2018/?ADTAG=innercop.lol.web.top" target="_blank">
+								洲际系列赛
+							</a>
+							<a class="head-nav-sub-a" href="https://lpl.qq.com/es/worlds/2018/" target="_blank">
+								全球总决赛
+							</a>
+							<a class="head-nav-sub-a" href="https://lpl.qq.com/es/allstar/2018/index.html?ADTAG=innercop.lol.web.top" target="_blank">
+								全明星赛
+							</a>
+							<a class="head-nav-sub-a" href="https://lpl.qq.com/es/lcl/2018/index.html?ADTAG=innercop.lol.web.top" target="_blank">
+								高校联赛
+							</a>
+							<a class="head-nav-sub-a" href="https://lpl.qq.com/es/act/a20181219citycarnival/?ADTAG=innercop.lol.web.top" target="_blank">
+								城市英雄争霸赛
+							</a>
+						</li>
+						<li>
+							<a class="head-nav-sub-a" href="https://kf.qq.com/product/lol.html?pc_scene=web" target="_blank">
+								在线客服
+							</a>
+							<a class="head-nav-sub-a" href="https://lol.qq.com/act/a20170608transferzone/index.html?ADTAG=lolweb.v3" target="_blank">
+								<i class="icon-new"></i>
+								转区系统
+							</a>
+							<a class="head-nav-sub-a" href="https:lol.qq.com/act/a20151118fh/" target="_blank">
+								<i class="icon-hot"></i>
+								封号查询
+							</a>
+							<a class="head-nav-sub-a" href="https:lol.qq.com/act/a20110907exp/" target="_blank">
+								体验服申请
+							</a>
+							<a class="head-nav-sub-a" href="https:lol.qq.com/act/a20170728replay/" target="_blank">
+								回放系统
+							</a>
+							<a class="head-nav-sub-a" href="https:lol.qq.com/act/a20150326dqpd/" target="_blank">
+								服务器状态查询
+							</a>
+							<a class="head-nav-sub-a" href="https:lol.qq.com/act/a20171108ambient/index.html" target="_blank">
+								<i class="icon-new"></i>
+								秩序殿堂
+							</a>
+							<a class="head-nav-sub-a" href="https:lol.qq.com/act/a20170704super/index.shtml?e_code=336975" target="_blank">
+								<i class="icon-new"></i>
+								峡谷之巅
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--hover:搜索-->
+			<div class="search-hover-wrap">
+				<div class="search-hover-inner">
+					<a href="javascript:" class="btn-search" id="J_hoverSearchBtn" title="搜索">
+						<i class="comm-icon-search"></i>
+					</a>
+					<input type="text" id="J_hoverSearchInput" class="input-search" placeholder="搜索 lol.qq.com" autocomplete="off">
+					<a class="btn-close-search" id="J_btnCloseSearch" href="javascript:" title="关闭搜索">
+						<i class="icon-xx-1"></i>
+					</a>
+					<div class="search-hover-bottom">
+						<span class="hover-bottom-s1"></span>
+						<ul class="search-direct-href"></ul>
+						<a class="hover-bottom-s2" href="javascript:" id="J_hoverClearRecord">清除记录</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 官网通用页头end -->
+		
+		<!-- 首页内容 -->
+		<!-- zoom缩放时固定在左上角 -->
+		<div class="g-zoombox" style="zoom: 0.879944;">
+			<!-- part1 -->
+			<div class="g-index-wrap1">
+				<!-- 首页轮播图 -->
+				<div class="m-promo">
+					<ul class="promo-img-list"></ul>
+				</div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<!-- part2 -->
+			<div></div>
+			<!-- part3 -->
+			<div></div>
+			<!-- part4 -->
+			<div></div>
+			<!-- part5 -->
+			<div></div>
+			<!-- 侧边栏 -->
+			<div></div>
+		</div>
+		<!-- 回到顶部 -->
+		<a id="scrollup" href="#top" style="position:fixed;z-index: 999;display: none;">^</a>
+	</body>
+</html>
